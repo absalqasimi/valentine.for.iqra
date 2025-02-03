@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine, Iqra!</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #fcd3d3;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        #container {
+            max-width: 90%;
+            text-align: center;
+        }
+        img {
+            width: 80%;
+            max-width: 300px;
+        }
+        #buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: auto;
+        }
+        #yes {
+            background-color: #ff4d4d;
+            color: white;
+        }
+        #no {
+            background-color: #cccccc;
+            color: black;
+        }
+        #final-message {
+            display: none;
+            margin-top: 20px;
+        }
+        h2 {
+            font-size: 20px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>Will the love of my life Iqra give me the luxury of her being my Valentine?</h2>
+        <img src="asking.png" alt="Cute Penguin">
+        <div id="buttons">
+            <button id="yes" onclick="showFinal()">Yes</button>
+            <button id="no" onclick="changeNo()">No</button>
+        </div>
+        <div id="final-message">
+            <img src="finalimage.png" alt="Final Image">
+            <h2>I love you so much Iqra, see you soon!</h2>
+        </div>
+    </div>
+
+    <script>
+        let phrases = ["Please", "Cmon love", "Stop saying no", "You are tearing my heart", "Be my fucking valentine"];
+        let index = 0;
+        let yesButton = document.getElementById("yes");
+        let noButton = document.getElementById("no");
+        let initialSize = 16;
+        let growthFactor = 1.5;
+
+        function changeNo() {
+            if (index < phrases.length - 1) {
+                noButton.innerText = phrases[index];
+                index++;
+                yesButton.style.fontSize = (initialSize * Math.pow(growthFactor, index)) + "px";
+            } else {
+                noButton.innerText = phrases[index];
+                noButton.onclick = function() {
+                    noButton.style.display = "none";
+                    yesButton.style.fontSize = "100vh";
+                    yesButton.style.width = "100vw";
+                    yesButton.style.height = "100vh";
+                };
+            }
+        }
+
+        function showFinal() {
+            document.getElementById("container").style.display = "none";
+            document.getElementById("final-message").style.display = "block";
+        }
+    </script>
+</body>
+</html>
